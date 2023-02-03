@@ -18,6 +18,8 @@ pub enum EscrowError {
     #[error("Amount Overflow")]
     AmountOverflow,
     
+    #[error("Time Constraint")]
+    TimeConstraintWasNotSatisfied,
 }
 
 impl From<EscrowError> for ProgramError {

@@ -5,7 +5,7 @@ use solana_program::{
     msg,
     pubkey::Pubkey,
     program_pack::{Pack, IsInitialized},
-    sysvar::{rent::Rent, Sysvar},
+    sysvar::{rent::Rent, Sysvar, clock::Clock},
     program::invoke,
     program::invoke_signed
 };
@@ -35,9 +35,9 @@ impl Processor {
         amount: u64,
         program_id: &Pubkey,
     ) -> ProgramResult {
+        let unlock_time = Clock::get()?.slot + 100;
         let account_info_iter = &mut accounts.iter();
         let initializer = next_account_info(account_info_iter)?;
-
         if !initializer.is_signer {
             return Err(ProgramError::MissingRequiredSignature);
         }
@@ -67,6 +67,7 @@ impl Processor {
         escrow_info.temp_token_account_pubkey = *temp_token_account.key;
         escrow_info.initializer_token_to_receive_account_pubkey = *token_to_receive_account.key;
         escrow_info.expected_amount = amount;
+        escrow_info.unlock_time = unlock_time;
         
         Escrow::pack(escrow_info, &mut escrow_account.try_borrow_mut_data()?)?;       
 
@@ -125,7 +126,11 @@ impl Processor {
         let escrow_account = next_account_info(account_info_iter)?;
     
         let escrow_info = Escrow::unpack(&escrow_account.try_borrow_data()?)?;
-    
+        let current_slot = Clock::get()?.slot;
+        if current_slot > escrow_info.unlock_time && escrow_info.unlock_time + 1000 > current_slot {
+            return Err(EscrowError::TimeConstraintWasNotSatisfied.into());
+        }
+
         if escrow_info.temp_token_account_pubkey != *pdas_temp_token_account.key {
             return Err(ProgramError::InvalidAccountData);
         }
