@@ -741,17 +741,30 @@ __metadata:
   linkType: hard
 
 "@solana/wallet-adapter-base@npm:^0.9.2":
-  version: 0.9.20
-  resolution: "@solana/wallet-adapter-base@npm:0.9.20"
+  version: 0.9.21
+  resolution: "@solana/wallet-adapter-base@npm:0.9.21"
   dependencies:
+    "@solana/wallet-standard-features": ^1.0.0
+    "@wallet-standard/base": ^1.0.1
+    "@wallet-standard/features": ^1.0.1
     eventemitter3: ^4.0.0
   peerDependencies:
     "@solana/web3.js": ^1.58.0
-  checksum: 26cf202eff3977f27e6bb1a2ac9b9f713957e736a865b72cf2e3998e3003eedb7a1691c6f7332de73d555176f4f3653d6b56a17d6c234ace963c4cfe1578b148
+  checksum: f6088928f8d43c9985c3f79303c928d0e28351bab248366c2873db9ec796021ababe458f86e896086840eccb4b4fa01b8c649ef7fd4d46e32685a81b537e8d8d
   languageName: node
   linkType: hard
 
-"@solana/web3.js@npm:^1.32.0, @solana/web3.js@npm:^1.36.0, @solana/web3.js@npm:^1.56.2, @solana/web3.js@npm:^1.63.1, @solana/web3.js@npm:^1.66.2, @solana/web3.js@npm:^1.68.0":
+"@solana/wallet-standard-features@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@solana/wallet-standard-features@npm:1.0.0"
+  dependencies:
+    "@wallet-standard/base": ^1.0.0
+    "@wallet-standard/features": ^1.0.0
+  checksum: ad7ec53138e832f3517b9ccd5aa4375a5f0345fab4d36044a6d0ce68d8ce47001f4363a1a0bc44c9ac2ac3e937ebf69789406e4cd439cede96b38a8c3db6c5a7
+  languageName: node
+  linkType: hard
+
+"@solana/web3.js@npm:^1.32.0, @solana/web3.js@npm:^1.36.0, @solana/web3.js@npm:^1.56.2, @solana/web3.js@npm:^1.63.1, @solana/web3.js@npm:^1.66.2, @solana/web3.js@npm:^1.68.0, @solana/web3.js@npm:^1.73.2":
   version: 1.73.2
   resolution: "@solana/web3.js@npm:1.73.2"
   dependencies:
@@ -880,6 +893,22 @@ __metadata:
   version: 1.1.2
   resolution: "@ungap/promise-all-settled@npm:1.1.2"
   checksum: 08d37fdfa23a6fe8139f1305313562ebad973f3fac01bcce2773b2bda5bcb0146dfdcf3cb6a722cf0a5f2ca0bc56a827eac8f1e7b3beddc548f654addf1fc34c
+  languageName: node
+  linkType: hard
+
+"@wallet-standard/base@npm:^1.0.0, @wallet-standard/base@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@wallet-standard/base@npm:1.0.1"
+  checksum: 8f40bee1c69d2c3c0a4c317b3069301406025f8dc1a794b4b4b6d36d2e8e1e38193e6db1c3ac729c773d380f4e2c3a7454bfd3e138708aa6821b6e2029063590
+  languageName: node
+  linkType: hard
+
+"@wallet-standard/features@npm:^1.0.0, @wallet-standard/features@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@wallet-standard/features@npm:1.0.1"
+  dependencies:
+    "@wallet-standard/base": ^1.0.1
+  checksum: e8bfcc467bb7774cceb4400eda311089c4b16ab70f0ad201346cd4d85b0a697bddcfb9ad917438ebacc4dbf831c833e5538717dc4a922f25bbc98091af9c4abb
   languageName: node
   linkType: hard
 
@@ -3510,10 +3539,12 @@ __metadata:
     "@metaplex-foundation/js": ^0.18.1
     "@project-serum/anchor": ^0.26.0
     "@solana/spl-token": ^0.3.7
+    "@solana/web3.js": ^1.73.2
     "@types/bn.js": ^5.1.0
     "@types/chai": ^4.3.0
     "@types/mocha": ^9.0.0
     chai: ^4.3.7
+    debug: ^4.3.4
     mocha: ^9.0.3
     prettier: ^2.6.2
     ts-mocha: ^10.0.0
